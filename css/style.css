@@ -280,6 +280,7 @@ h2 { font-size: clamp(30px, 3vw, 42px); font-weight: 650; line-height: 1.3; lett
 }
 @media (max-height: 820px) {
   .scroll-hint { display: none; }
+  .hero { padding-bottom: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
