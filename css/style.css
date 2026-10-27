@@ -99,7 +99,7 @@ ul { list-style: none; }
 .typing-line { display: flex; align-items: center; gap: 11px; margin: 25px 0 24px; font-size: 18px; color: var(--cyan-soft); letter-spacing: .015em; animation-delay: .5s; }
 .typing-caret { width: 3px; height: 19px; background: var(--cyan); flex-shrink: 0; animation: caretPulse 2.4s ease-in-out infinite; }
 @keyframes caretPulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
-.hero-desc { font-size: 18px; line-height: 1.85; max-width: 34em; color: var(--muted); animation-delay: .6s; text-wrap: balance; }
+.hero-desc { font-size: 18px; line-height: 1.85; max-width: 34em; color: var(--muted); animation-delay: .6s; }
 .chips { display: flex; gap: 20px; flex-wrap: wrap; margin: 24px 0 30px; font-size: 14px; color: var(--muted); animation-delay: .7s; }
 .chips li { display: flex; align-items: center; gap: 8px; }
 .chips li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #4288bc; }
