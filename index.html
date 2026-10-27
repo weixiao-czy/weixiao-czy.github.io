@@ -68,6 +68,55 @@
           上海交通大学 2026 级本科生，热爱编程。<br class="desktop-break">
           喜欢把想法变成真正能用的项目。
         </p>
+      </div>
+
+      <!-- 居中：虚拟形象 + 护盾 -->
+      <div class="hero-stage">
+        <div class="shield-aura" aria-hidden="true"></div>
+        <div class="shield-stage">
+          <div class="portrait-disc">
+            <div class="portrait-media">
+              <img class="portrait-img" src="assets/harry-character.jpg" alt="陈郑砚的虚拟形象" width="1024" height="1024">
+            </div>
+            <span class="portrait-scan" aria-hidden="true"></span>
+          </div>
+          <svg class="shield-svg" viewBox="0 0 200 230" aria-hidden="true">
+            <defs>
+              <linearGradient id="shieldStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7dd3fc"/>
+                <stop offset="50%" stop-color="#38bdf8"/>
+                <stop offset="100%" stop-color="#2563eb"/>
+              </linearGradient>
+            </defs>
+            <path class="shield-outline" d="M100 8 178 36v62c0 54-36 88-78 104C58 186 22 152 22 98V36Z"/>
+            <path class="shield-sweep space-motion" d="M100 8 178 36v62c0 54-36 88-78 104C58 186 22 152 22 98V36Z"/>
+            <path class="shield-outline shield-inner" d="M100 22 166 46v52c0 46-30 76-66 90-36-14-66-44-66-90V46Z"/>
+            <circle class="shield-ring" cx="100" cy="98" r="62"/>
+            <circle class="shield-ring shield-ring-2" cx="100" cy="98" r="68"/>
+          </svg>
+          <div class="shield-badge">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5.2-3.4 8.9-8 11-4.6-2.1-8-5.8-8-11V5Z"/><path d="M9 11.5l2.2 2.2L15.5 9" fill="none" stroke-width="1.8"/></svg>
+            <span>保持好奇 · 持续构建</span>
+          </div>
+        </div>
+        <p class="shield-caption">Building with curiosity.</p>
+        <div class="social-row hero-in">
+          <a class="social-btn" href="https://github.com/weixiao-czy" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            GitHub
+          </a>
+          <a class="social-btn social-btn-xhs" href="https://xhslink.cn/o/9YxzJMVlwX7" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10.2 4.9 7.7 4 5 4c-.9 0-1.8.1-2.6.3.1 6.4 1.6 11.6 4.2 15.4 1.9-.5 3.8-1.5 5.4-3 1.6 1.5 3.5 2.5 5.4 3 2.6-3.8 4.1-9 4.2-15.4C20.8 4.1 19.9 4 19 4c-2.7 0-5.2.9-7 2.5Z" fill="none" stroke-width="1.7"/><path d="M12 6.5v10.2" fill="none" stroke-width="1.7"/></svg>
+            小红书
+          </a>
+        </div>
+        <figure class="hero-polaroid">
+          <img src="assets/avatar.jpg" alt="陈郑砚本人照片" width="435" height="435" decoding="async">
+          <figcaption>Harry · 2026</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-meta">
         <ul class="chips hero-in">
           <li>Python</li>
           <li>C++</li>
@@ -81,46 +130,6 @@
           <li><span class="stats-v">SJTU</span><span class="stats-k">上海交通大学</span></li>
           <li><span class="stats-v">2026</span><span class="stats-k">新的旅程，正在开始</span></li>
         </ul>
-      </div>
-
-      <!-- 护盾头像 -->
-      <div class="hero-shield" id="shieldWrap">
-        <div class="shield-aura" aria-hidden="true"></div>
-        <div class="shield-stage">
-        <svg class="shield-svg" viewBox="0 0 200 230" role="img" aria-label="陈郑砚的照片，蓝色护盾边框">
-          <defs>
-            <linearGradient id="shieldStroke" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#7dd3fc"/>
-              <stop offset="50%" stop-color="#38bdf8"/>
-              <stop offset="100%" stop-color="#2563eb"/>
-            </linearGradient>
-            <clipPath id="avatarClip"><circle cx="100" cy="98" r="62"/></clipPath>
-          </defs>
-          <path class="shield-outline" d="M100 8 178 36v62c0 54-36 88-78 104C58 186 22 152 22 98V36Z"/>
-          <path class="shield-sweep space-motion" d="M100 8 178 36v62c0 54-36 88-78 104C58 186 22 152 22 98V36Z"/>
-          <path class="shield-outline shield-inner" d="M100 22 166 46v52c0 46-30 76-66 90-36-14-66-44-66-90V46Z"/>
-          <g clip-path="url(#avatarClip)">
-            <image href="assets/avatar.jpg" x="38" y="36" width="124" height="124" preserveAspectRatio="xMidYMin slice"/>
-          </g>
-          <circle class="shield-ring" cx="100" cy="98" r="62"/>
-          <circle class="shield-ring shield-ring-2" cx="100" cy="98" r="68"/>
-        </svg>
-        <div class="shield-badge">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5.2-3.4 8.9-8 11-4.6-2.1-8-5.8-8-11V5Z"/><path d="M9 11.5l2.2 2.2L15.5 9" fill="none" stroke-width="1.8"/></svg>
-          <span>保持好奇 · 持续构建</span>
-        </div>
-        </div>
-        <p class="shield-caption">Building with curiosity.</p>
-        <div class="social-row hero-in">
-          <a class="social-btn" href="https://github.com/weixiao-czy" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-            GitHub
-          </a>
-          <a class="social-btn social-btn-xhs" href="https://xhslink.cn/o/9YxzJMVlwX7" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10.2 4.9 7.7 4 5 4c-.9 0-1.8.1-2.6.3.1 6.4 1.6 11.6 4.2 15.4 1.9-.5 3.8-1.5 5.4-3 1.6 1.5 3.5 2.5 5.4 3 2.6-3.8 4.1-9 4.2-15.4C20.8 4.1 19.9 4 19 4c-2.7 0-5.2.9-7 2.5Z" fill="none" stroke-width="1.7"/><path d="M12 6.5v10.2" fill="none" stroke-width="1.7"/></svg>
-            小红书
-          </a>
-        </div>
       </div>
     </div>
     <a class="scroll-hint" href="#works" aria-label="向下滚动">
