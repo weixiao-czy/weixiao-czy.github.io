@@ -231,7 +231,19 @@
       var ok = false;
       try { await navigator.clipboard.writeText(text); ok = true; }
       catch (_) { ok = fallbackCopy(text); }
-      toast.textContent = ok ? '已复制：' + text : '复制失败，请手动选择号码';
+      if (ok) {
+        toast.textContent = '已复制：' + text;
+      } else {
+        var card = button.closest('.contact-card');
+        var valueEl = card && card.querySelector('.contact-v');
+        if (valueEl) {
+          var range = document.createRange();
+          range.selectNodeContents(valueEl);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+        }
+        toast.textContent = valueEl ? '复制失败，已选中内容，请手动复制' : '复制失败，请手动选择号码';
+      }
       toast.classList.add('is-show');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(function () { toast.classList.remove('is-show'); }, 2200);
