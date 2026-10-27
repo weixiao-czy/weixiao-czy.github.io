@@ -74,11 +74,32 @@
       <div class="hero-stage">
         <div class="shield-aura" aria-hidden="true"></div>
         <div class="shield-stage">
-          <div class="portrait-disc">
+          <div class="portrait-disc" id="avatarDisc" role="slider" tabindex="0"
+               aria-label="陈郑砚的虚拟形象，可拖拽或左右方向键旋转，点击微笑"
+               aria-valuemin="0" aria-valuemax="359" aria-valuenow="0" aria-valuetext="正面">
             <div class="portrait-media">
-              <img class="portrait-img" src="assets/harry-character.jpg" alt="陈郑砚的虚拟形象" width="1024" height="1024">
-              <video class="portrait-video" src="assets/harry-character-loop.mp4" poster="assets/harry-character.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+              <div class="avatar-set" data-set="neutral">
+                <img src="assets/avatar/neutral-000.webp" alt="陈郑砚的虚拟形象" width="512" height="512" decoding="async">
+                <img src="assets/avatar/neutral-045.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/neutral-090.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/neutral-135.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/neutral-180.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/neutral-225.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/neutral-270.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/neutral-315.webp" alt="" width="512" height="512" decoding="async">
+              </div>
+              <div class="avatar-set avatar-set-smile" data-set="smile" aria-hidden="true">
+                <img src="assets/avatar/smile-000.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/smile-045.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/smile-090.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/smile-135.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/smile-180.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/smile-225.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/smile-270.webp" alt="" width="512" height="512" decoding="async">
+                <img src="assets/avatar/smile-315.webp" alt="" width="512" height="512" decoding="async">
+              </div>
             </div>
+            <span class="avatar-ring" aria-hidden="true"></span>
             <span class="portrait-scan" aria-hidden="true"></span>
           </div>
           <svg class="shield-svg" viewBox="0 0 200 230" aria-hidden="true">
@@ -101,6 +122,14 @@
           </div>
         </div>
         <p class="shield-caption">Building with curiosity.</p>
+        <div class="avatar-controls">
+          <span class="avatar-angle" aria-hidden="true"><span id="avatarAngle">000</span><i>°</i></span>
+          <span class="avatar-hint" id="avatarHint">拖拽旋转</span>
+          <button class="avatar-smile" id="smileToggle" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.4 14c.9 1.6 2.2 2.5 3.6 2.5s2.7-.9 3.6-2.5"/></svg>
+            <span>微笑</span>
+          </button>
+        </div>
         <div class="social-row hero-in">
           <a class="social-btn" href="https://github.com/weixiao-czy" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>

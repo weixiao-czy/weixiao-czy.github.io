@@ -56,29 +56,129 @@
       syncMotion();
     }).observe(hero);
   }
-  var portrait = document.querySelector('.portrait-disc');
-  var portraitVideo = document.querySelector('.portrait-video');
-  if (portraitVideo) {
-    portraitVideo.addEventListener('playing', function () { portrait.classList.add('is-playing'); });
-    portraitVideo.addEventListener('pause', function () { portrait.classList.remove('is-playing'); });
-    portraitVideo.addEventListener('canplay', syncVideo);
-  }
-  function syncVideo() {
-    if (!portraitVideo) return;
-    if (motion.matches || document.hidden || !heroVisible) {
-      portraitVideo.pause();
-      return;
-    }
-    var attempt = portraitVideo.play();
-    if (attempt && attempt.catch) attempt.catch(function () {});
-  }
   function syncMotion() {
     document.body.classList.toggle('motion-paused', document.hidden || !heroVisible || motion.matches);
-    syncVideo();
   }
   document.addEventListener('visibilitychange', syncMotion);
   motion.addEventListener('change', syncMotion);
   syncMotion();
+
+  /* The portrait is a 360° turntable: 8 angles per expression, blended by opacity. */
+  var disc = document.getElementById('avatarDisc');
+  if (disc) {
+    var frames = {
+      neutral: Array.prototype.slice.call(disc.querySelectorAll('[data-set="neutral"] img')),
+      smile: Array.prototype.slice.call(disc.querySelectorAll('[data-set="smile"] img'))
+    };
+    var angleOut = document.getElementById('avatarAngle');
+    var smileButton = document.getElementById('smileToggle');
+    var stageEl = disc.closest('.hero-stage');
+    var directions = ['正面', '右前', '右侧', '右后', '背面', '左后', '左侧', '左前'];
+    var step = 45, angle = 0, smileMix = 0, smileTarget = 0;
+    var dragging = false, dragX = 0, dragT = 0, velocity = 0, moved = 0, frameId = 0, lastFrame = 0;
+
+    function wrapAngle(value) { return ((value % 360) + 360) % 360; }
+    function padAngle(value) { return ('00' + value).slice(-3); }
+    function nearestSlot(value) { return Math.round(value / step) % 8; }
+
+    function renderAvatar() {
+      for (var i = 0; i < 8; i++) {
+        var gap = Math.abs(((angle - i * step + 540) % 360) - 180);
+        var weight = Math.max(0, 1 - gap / step);
+        if (frames.neutral[i]) frames.neutral[i].style.opacity = (weight * (1 - smileMix)).toFixed(3);
+        if (frames.smile[i]) frames.smile[i].style.opacity = (weight * smileMix).toFixed(3);
+      }
+      disc.style.setProperty('--avatar-spin', angle.toFixed(1) + 'deg');
+      var rounded = Math.round(angle) % 360;
+      if (angleOut) angleOut.textContent = padAngle(rounded);
+      disc.setAttribute('aria-valuenow', String(rounded));
+      disc.setAttribute('aria-valuetext', directions[nearestSlot(angle)]);
+    }
+
+    function runAvatar(now) {
+      frameId = 0;
+      if (!lastFrame) lastFrame = now;
+      var dt = Math.min(50, now - lastFrame);
+      lastFrame = now;
+      var busy = false;
+      if (!dragging && Math.abs(velocity) > .012) {
+        angle = wrapAngle(angle + velocity * dt);
+        velocity *= Math.pow(.93, dt / 16.7);
+        busy = true;
+      }
+      if (smileMix !== smileTarget) {
+        if (motion.matches) smileMix = smileTarget;
+        else {
+          smileMix += (smileTarget - smileMix) * Math.min(1, dt / 150);
+          if (Math.abs(smileTarget - smileMix) < .003) smileMix = smileTarget;
+        }
+        busy = true;
+      }
+      renderAvatar();
+      if (busy) scheduleAvatar(); else lastFrame = 0;
+    }
+    function scheduleAvatar() {
+      if (!frameId) frameId = requestAnimationFrame(runAvatar);
+    }
+
+    function setSmiling(on) {
+      smileTarget = on ? 1 : 0;
+      disc.classList.toggle('is-smiling', on);
+      if (smileButton) smileButton.setAttribute('aria-pressed', on ? 'true' : 'false');
+      scheduleAvatar();
+    }
+    if (smileButton) {
+      smileButton.addEventListener('click', function () {
+        setSmiling(smileButton.getAttribute('aria-pressed') !== 'true');
+      });
+    }
+
+    disc.addEventListener('pointerdown', function (event) {
+      if (event.button !== undefined && event.button !== 0) return;
+      dragging = true; moved = 0; velocity = 0;
+      dragX = event.clientX; dragT = performance.now();
+      disc.classList.add('is-dragging');
+      if (disc.setPointerCapture) disc.setPointerCapture(event.pointerId);
+      scheduleAvatar();
+    });
+    disc.addEventListener('pointermove', function (event) {
+      if (!dragging) return;
+      var now = performance.now();
+      var dx = event.clientX - dragX;
+      var dt = Math.max(1, now - dragT);
+      moved += Math.abs(dx);
+      var sensitivity = 360 / (Math.max(120, disc.clientWidth) * 1.35);
+      angle = wrapAngle(angle - dx * sensitivity);
+      velocity = Math.max(-.5, Math.min(.5, -dx * sensitivity / dt));
+      dragX = event.clientX; dragT = now;
+      if (moved > 16 && stageEl) stageEl.classList.add('has-interacted');
+      renderAvatar();
+    });
+    function endDrag(event) {
+      if (!dragging) return;
+      dragging = false;
+      disc.classList.remove('is-dragging');
+      if (event.type === 'pointercancel') { moved = 99; velocity = 0; }
+      if (moved < 6) { velocity = 0; setSmiling(smileTarget !== 1); }
+      if (motion.matches) velocity = 0;
+      scheduleAvatar();
+    }
+    disc.addEventListener('pointerup', endDrag);
+    disc.addEventListener('pointercancel', endDrag);
+    disc.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        velocity = 0;
+        angle = wrapAngle(angle + (event.key === 'ArrowRight' ? step : -step));
+        renderAvatar();
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setSmiling(smileTarget !== 1);
+      }
+    });
+
+    renderAvatar();
+  }
 
   /* Pointer feedback is scoped to the hero and schedules at most one frame per event burst. */
   var shield = document.querySelector('.shield-svg');
