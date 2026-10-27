@@ -99,7 +99,7 @@ ul { list-style: none; }
 .typing-line { display: flex; align-items: center; gap: 11px; margin: 25px 0 24px; font-size: 18px; color: var(--cyan-soft); letter-spacing: .015em; animation-delay: .5s; }
 .typing-caret { width: 3px; height: 19px; background: var(--cyan); flex-shrink: 0; animation: caretPulse 2.4s ease-in-out infinite; }
 @keyframes caretPulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
-.hero-desc { font-size: 18px; line-height: 1.85; max-width: 34em; color: var(--muted); animation-delay: .6s; }
+.hero-desc { font-size: 18px; line-height: 1.85; max-width: 34em; color: var(--muted); text-wrap: pretty; animation-delay: .6s; }
 .chips { display: flex; gap: 20px; flex-wrap: wrap; margin: 24px 0 30px; font-size: 14px; color: var(--muted); animation-delay: .7s; }
 .chips li { display: flex; align-items: center; gap: 8px; }
 .chips li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #4288bc; }
@@ -222,13 +222,22 @@ h2 { font-size: clamp(30px, 3vw, 42px); font-weight: 650; line-height: 1.3; lett
 }
 @media (max-width: 1000px) {
   :root { --gutter: 36px; }
+  .hero-inner { grid-template-columns: minmax(0, 1fr) 300px; gap: 22px 28px; }
   .hero-stage { width: 300px; }
+  .hero-polaroid { left: -10%; }
   .hero-title { font-size: 55px; }
   .typing-line { font-size: 18px; }
   .hero-desc { font-size: 18px; }
   .desktop-break { display: none; }
   .contact-card { padding: 28px; }
   .contact-note { position: static; margin-top: 9px; }
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "meta" "stage"; gap: 32px; }
+  .hero-copy, .hero-meta { align-self: auto; }
+  .hero-meta { margin-top: 0; gap: 20px; }
+  .hero-stage { width: min(100%, 320px); }
+  .hero-polaroid { left: -14%; top: 12%; bottom: auto; }
 }
 @media (max-width: 650px) {
   :root { --gutter: 24px; }
@@ -251,7 +260,7 @@ h2 { font-size: clamp(30px, 3vw, 42px); font-weight: 650; line-height: 1.3; lett
   .hero-actions .btn { min-height: 46px; padding: 9px 19px; font-size: 14px; }
   .stats { display: none; }
   .hero-stage { width: min(100%, 300px); }
-  .hero-polaroid { position: relative; left: auto; bottom: auto; margin: 24px auto 0; width: 100px; --tilt: -5deg; }
+  .hero-polaroid { position: relative; left: auto; top: auto; bottom: auto; margin: 24px auto 0; width: 100px; --tilt: -5deg; }
   .shield-badge { font-size: 13px; padding: 6px 15px; }
   .shield-caption { font-size: 13px; margin-top: 0; }
   .social-row { margin-top: 12px; }
