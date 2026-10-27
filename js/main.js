@@ -56,8 +56,25 @@
       syncMotion();
     }).observe(hero);
   }
+  var portrait = document.querySelector('.portrait-disc');
+  var portraitVideo = document.querySelector('.portrait-video');
+  if (portraitVideo) {
+    portraitVideo.addEventListener('playing', function () { portrait.classList.add('is-playing'); });
+    portraitVideo.addEventListener('pause', function () { portrait.classList.remove('is-playing'); });
+    portraitVideo.addEventListener('canplay', syncVideo);
+  }
+  function syncVideo() {
+    if (!portraitVideo) return;
+    if (motion.matches || document.hidden || !heroVisible) {
+      portraitVideo.pause();
+      return;
+    }
+    var attempt = portraitVideo.play();
+    if (attempt && attempt.catch) attempt.catch(function () {});
+  }
   function syncMotion() {
     document.body.classList.toggle('motion-paused', document.hidden || !heroVisible || motion.matches);
+    syncVideo();
   }
   document.addEventListener('visibilitychange', syncMotion);
   motion.addEventListener('change', syncMotion);

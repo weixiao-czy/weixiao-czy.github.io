@@ -4,6 +4,7 @@ node_modules/
 tools/
 preview-*.png
 vibe_images/
+vibe_videos/
 package.json
 package-lock.json
 本人照片.jpg
