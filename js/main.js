@@ -76,10 +76,12 @@
     var directions = ['正面', '右前', '右侧', '右后', '背面', '左后', '左侧', '左前'];
     var step = 45, angle = 0, smileMix = 0, smileTarget = 0;
     var dragging = false, dragX = 0, dragT = 0, velocity = 0, moved = 0, frameId = 0, lastFrame = 0;
+    var settling = false, settleFrom = 0, settleTo = 0, settleStart = 0, settleDuration = 260;
 
     function wrapAngle(value) { return ((value % 360) + 360) % 360; }
     function padAngle(value) { return ('00' + value).slice(-3); }
     function nearestSlot(value) { return Math.round(value / step) % 8; }
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
     function renderAvatar() {
       for (var i = 0; i < 8; i++) {
@@ -104,6 +106,22 @@
       if (!dragging && Math.abs(velocity) > .012) {
         angle = wrapAngle(angle + velocity * dt);
         velocity *= Math.pow(.93, dt / 16.7);
+        busy = true;
+      }
+      if (!dragging && !settling && Math.abs(velocity) <= .012) {
+        var delta = ((Math.round(angle / step) * step - angle + 540) % 360) - 180;
+        if (Math.abs(delta) > .05) {
+          settling = true;
+          settleFrom = angle;
+          settleTo = angle + delta;
+          settleStart = now;
+          if (motion.matches) { angle = wrapAngle(settleTo); settling = false; }
+        }
+      }
+      if (settling) {
+        var progress = Math.min(1, (now - settleStart) / settleDuration);
+        angle = wrapAngle(settleFrom + (settleTo - settleFrom) * easeOut(progress));
+        if (progress >= 1) { angle = wrapAngle(settleTo); settling = false; }
         busy = true;
       }
       if (smileMix !== smileTarget) {
@@ -135,7 +153,7 @@
 
     disc.addEventListener('pointerdown', function (event) {
       if (event.button !== undefined && event.button !== 0) return;
-      dragging = true; moved = 0; velocity = 0;
+      dragging = true; moved = 0; velocity = 0; settling = false;
       dragX = event.clientX; dragT = performance.now();
       disc.classList.add('is-dragging');
       if (disc.setPointerCapture) disc.setPointerCapture(event.pointerId);
@@ -169,6 +187,7 @@
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
         velocity = 0;
+        settling = false;
         angle = wrapAngle(angle + (event.key === 'ArrowRight' ? step : -step));
         renderAvatar();
       } else if (event.key === 'Enter' || event.key === ' ') {
