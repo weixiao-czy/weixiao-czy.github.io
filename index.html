@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050b17">
 <title>陈郑砚 Harry · 个人作品集</title>
-<meta name="description" content="陈郑砚（Harry）的个人作品集 —— 上海交通大学 2026 级本科新生，热爱编程，作品包括 data_base_agent 与 MemLens。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 4 88 18v30c0 26-18 42-38 48C30 90 12 74 12 48V18Z' fill='none' stroke='%2338bdf8' stroke-width='7'/%3E%3C/svg%3E">
+<meta name="description" content="陈郑砚（Harry）的个人作品集 —— 上海交通大学 2026 级本科生，信息工程方向，关注通信、硬件与代码。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='28' y='28' width='44' height='44' rx='9' fill='none' stroke='%2338bdf8' stroke-width='6'/%3E%3Cpath d='M39 28V16M50 28V16M61 28V16M39 84V72M50 84V72M61 84V72M28 39H16M28 50H16M28 61H16M84 39H72M84 50H72M84 61H72' stroke='%2338bdf8' stroke-width='5'/%3E%3Crect x='44' y='44' width='12' height='12' rx='2' fill='%2338bdf8'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -28,9 +28,10 @@
 
 <header class="site-header" id="siteHeader">
 <a class="brand" href="#home">
-  <svg viewBox="0 0 100 100" class="brand-shield" aria-hidden="true">
-    <path d="M50 4 88 18v30c0 26-18 42-38 48C30 90 12 74 12 48V18Z"/>
-    <path class="brand-core" d="M50 30v40M36 44h28"/>
+  <svg viewBox="0 0 100 100" class="brand-chip" aria-hidden="true">
+    <rect x="30" y="30" width="40" height="40" rx="8"/>
+    <path d="M40 30V17M50 30V17M60 30V17M40 83V70M50 83V70M60 83V70M30 40H17M30 50H17M30 60H17M83 40H70M83 50H70M83 60H70"/>
+    <rect class="brand-core" x="45" y="45" width="10" height="10" rx="2"/>
   </svg>
   <span class="brand-text">Harry<span class="brand-dot">.</span>Chen</span>
 </a>
@@ -65,15 +66,14 @@
           <span id="typingText">把想法，变成能运行的项目。</span>
         </p>
         <p class="hero-desc hero-in">
-          上海交通大学 2026 级本科生，热爱编程。<br class="desktop-break">
-          喜欢把想法变成真正能用的项目。
+          上海交通大学 2026 级本科生，<br class="desktop-break">信息工程方向：在信号、电路与代码中探索。
         </p>
       </div>
 
-      <!-- 居中：虚拟形象 + 护盾 -->
+      <!-- 居中：虚拟形象作为芯片核心 -->
       <div class="hero-stage">
-        <div class="shield-aura" aria-hidden="true"></div>
-        <div class="shield-stage">
+        <div class="chip-aura" aria-hidden="true"></div>
+        <div class="chip-stage">
           <div class="portrait-disc" id="avatarDisc" role="slider" tabindex="0"
                aria-label="陈郑砚的虚拟形象，可拖拽或左右方向键旋转，点击微笑"
                aria-valuemin="0" aria-valuemax="359" aria-valuenow="0" aria-valuetext="正面">
@@ -102,26 +102,119 @@
             <span class="avatar-ring" aria-hidden="true"></span>
             <span class="portrait-scan" aria-hidden="true"></span>
           </div>
-          <svg class="shield-svg" viewBox="0 0 200 230" aria-hidden="true">
+          <svg class="chip-svg" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
             <defs>
-              <linearGradient id="shieldStroke" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient id="chipStroke" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#7dd3fc"/>
                 <stop offset="50%" stop-color="#38bdf8"/>
                 <stop offset="100%" stop-color="#2563eb"/>
               </linearGradient>
+              <pattern id="chipGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M10 0H0V10" fill="none" stroke="rgba(139,196,239,.075)" stroke-width=".5"/>
+              </pattern>
             </defs>
-            <path class="shield-outline" d="M100 8 178 36v62c0 54-36 88-78 104C58 186 22 152 22 98V36Z"/>
-            <path class="shield-sweep space-motion" d="M100 8 178 36v62c0 54-36 88-78 104C58 186 22 152 22 98V36Z"/>
-            <path class="shield-outline shield-inner" d="M100 22 166 46v52c0 46-30 76-66 90-36-14-66-44-66-90V46Z"/>
-            <circle class="shield-ring" cx="100" cy="98" r="62"/>
-            <circle class="shield-ring shield-ring-2" cx="100" cy="98" r="68"/>
+
+            <circle class="chip-ring" cx="120" cy="120" r="116"/>
+            <circle class="chip-ring chip-ring-2" cx="120" cy="120" r="125"/>
+
+            <!-- PCB 走线、过孔与板载天线 -->
+            <g class="chip-traces">
+              <path d="M43 21V10H26"/>
+              <path d="M87 21V15H72"/>
+              <path d="M153 21V14H166"/>
+              <path d="M197 21V11"/>
+              <path d="M219 43H231V28"/>
+              <path d="M219 87H230V98"/>
+              <path d="M219 153H232"/>
+              <path d="M219 197H230V212"/>
+              <path d="M197 219V230"/>
+              <path d="M153 219V228H166"/>
+              <path d="M43 219V229H30"/>
+              <path d="M21 197H11"/>
+              <path d="M21 153H12V164"/>
+              <path d="M21 87H10V76"/>
+              <path d="M21 43H12"/>
+            </g>
+            <g class="chip-pads">
+              <circle cx="26" cy="10" r="2.2"/>
+              <circle cx="72" cy="15" r="2.2"/>
+              <circle cx="166" cy="14" r="2.2"/>
+              <circle cx="197" cy="11" r="2.2"/>
+              <circle cx="230" cy="98" r="2.2"/>
+              <circle cx="232" cy="153" r="2.2"/>
+              <circle cx="230" cy="212" r="2.2"/>
+              <circle cx="197" cy="230" r="2.2"/>
+              <circle cx="166" cy="228" r="2.2"/>
+              <circle cx="30" cy="229" r="2.2"/>
+              <circle cx="11" cy="197" r="2.2"/>
+              <circle cx="12" cy="164" r="2.2"/>
+              <circle cx="10" cy="76" r="2.2"/>
+              <circle cx="12" cy="43" r="2.2"/>
+            </g>
+            <g class="chip-antenna">
+              <path d="M231 28V14"/>
+              <path d="M224 13A10 10 0 0 1 238 13"/>
+              <path d="M220 8A15 15 0 0 1 242 8"/>
+            </g>
+
+            <!-- QFP 引脚 -->
+            <g class="chip-pins">
+              <rect x="40.5" y="21" width="5" height="11"/>
+              <rect x="62.5" y="21" width="5" height="11"/>
+              <rect x="84.5" y="21" width="5" height="11"/>
+              <rect x="106.5" y="21" width="5" height="11"/>
+              <rect x="128.5" y="21" width="5" height="11"/>
+              <rect x="150.5" y="21" width="5" height="11"/>
+              <rect x="172.5" y="21" width="5" height="11"/>
+              <rect x="194.5" y="21" width="5" height="11"/>
+              <rect x="40.5" y="208" width="5" height="11"/>
+              <rect x="62.5" y="208" width="5" height="11"/>
+              <rect x="84.5" y="208" width="5" height="11"/>
+              <rect x="106.5" y="208" width="5" height="11"/>
+              <rect x="128.5" y="208" width="5" height="11"/>
+              <rect x="150.5" y="208" width="5" height="11"/>
+              <rect x="172.5" y="208" width="5" height="11"/>
+              <rect x="194.5" y="208" width="5" height="11"/>
+              <rect x="21" y="40.5" width="11" height="5"/>
+              <rect x="21" y="62.5" width="11" height="5"/>
+              <rect x="21" y="84.5" width="11" height="5"/>
+              <rect x="21" y="106.5" width="11" height="5"/>
+              <rect x="21" y="128.5" width="11" height="5"/>
+              <rect x="21" y="150.5" width="11" height="5"/>
+              <rect x="21" y="172.5" width="11" height="5"/>
+              <rect x="21" y="194.5" width="11" height="5"/>
+              <rect x="208" y="40.5" width="11" height="5"/>
+              <rect x="208" y="62.5" width="11" height="5"/>
+              <rect x="208" y="84.5" width="11" height="5"/>
+              <rect x="208" y="106.5" width="11" height="5"/>
+              <rect x="208" y="128.5" width="11" height="5"/>
+              <rect x="208" y="150.5" width="11" height="5"/>
+              <rect x="208" y="172.5" width="11" height="5"/>
+              <rect x="208" y="194.5" width="11" height="5"/>
+            </g>
+
+            <rect class="chip-body" x="32" y="32" width="176" height="176" rx="22"/>
+            <rect class="chip-grid" x="32" y="32" width="176" height="176" rx="22" fill="url(#chipGrid)"/>
+            <rect class="chip-inner" x="44" y="44" width="152" height="152" rx="16"/>
+            <circle class="chip-die" cx="120" cy="120" r="72"/>
+            <circle class="chip-pin1" cx="40" cy="40" r="2.2"/>
+            <rect class="chip-sweep space-motion" x="32" y="32" width="176" height="176" rx="22"/>
+            <text class="chip-mark" x="120" y="47" text-anchor="middle">HJ·CORE</text>
+            <text class="chip-mark" x="192" y="47" text-anchor="end">SJTU·2026</text>
+            <text class="chip-mark" x="48" y="199">IE-01</text>
+            <text class="chip-mark" x="192" y="199" text-anchor="end">REV.A</text>
           </svg>
-          <div class="shield-badge">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5.2-3.4 8.9-8 11-4.6-2.1-8-5.8-8-11V5Z"/><path d="M9 11.5l2.2 2.2L15.5 9" fill="none" stroke-width="1.8"/></svg>
-            <span>保持好奇 · 持续构建</span>
+          <span class="chip-deco chip-deco-rf" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 20v-8"/><circle cx="12" cy="20" r="1.3"/><path d="M8.6 8.6a5 5 0 0 1 6.8 0"/><path d="M5.6 5.6a9 9 0 0 1 12.8 0"/></svg>
+            <em>RF</em>
+          </span>
+          <span class="chip-deco chip-deco-code" aria-hidden="true">&lt;/&gt;</span>
+          <div class="chip-badge">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3"/></svg>
+            <span>信息工程 · 2026</span>
           </div>
         </div>
-        <p class="shield-caption">Building with curiosity.</p>
+        <p class="chip-caption">Signal · Silicon · Software.</p>
         <div class="avatar-controls">
           <span class="avatar-angle" aria-hidden="true"><span id="avatarAngle">000</span><i>°</i></span>
           <span class="avatar-hint" id="avatarHint">拖拽旋转</span>
@@ -147,10 +240,10 @@
       </div>
 
       <div class="hero-meta">
-        <ul class="chips hero-in">
-          <li>Python</li>
-          <li>C++</li>
-          <li>Web 开发</li>
+        <ul class="focus-index hero-in" aria-label="技术方向">
+          <li><span class="focus-no">01</span><span class="focus-name">通信</span><span class="focus-en">Signal</span></li>
+          <li><span class="focus-no">02</span><span class="focus-name">硬件</span><span class="focus-en">Hardware</span></li>
+          <li><span class="focus-no">03</span><span class="focus-name">代码</span><span class="focus-en">Code</span></li>
         </ul>
         <div class="hero-actions hero-in">
           <a class="btn btn-primary" href="#works">探索我的作品 <span aria-hidden="true">↗</span></a>
@@ -176,30 +269,20 @@
     </header>
 
     <div class="works-grid">
-      <!-- 新增作品时：复制下面任意一个 article 卡片，替换图片、链接、标题与介绍即可 -->
-      <article class="work-card reveal">
+      <!-- 新增作品时：复制下面这张卡片，替换图片、链接、标题与介绍即可 -->
+      <article class="work-card work-card-feature reveal">
         <a class="work-thumb-img" href="data_base_agent/" aria-label="data_base_agent 产品介绍">
           <img src="assets/promo-dba.jpg" alt="data_base_agent 宣传图" width="1200" height="675" loading="lazy" decoding="async">
           <span class="work-tag">文献检索 Agent</span>
         </a>
-        <h3><a href="data_base_agent/">data_base_agent<span aria-hidden="true">↗</span></a></h3>
-        <p>面向交大同学的文献检索 Agent：通过对话澄清模糊的研究想法，生成结构化检索方案，并自动获取论文与引用信息。</p>
-        <div class="work-links">
-          <a class="btn btn-ghost btn-sm" href="data_base_agent/">产品介绍</a>
-          <a class="btn btn-ghost btn-sm" href="https://github.com/weixiao-czy/data_base_agent" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </article>
-
-      <article class="work-card reveal">
-        <a class="work-thumb-img" href="memlens/" aria-label="MemLens 产品介绍">
-          <img src="assets/promo-memlens.jpg" alt="MemLens 宣传图" width="1200" height="675" loading="lazy" decoding="async">
-          <span class="work-tag work-tag-dev">开发中</span>
-        </a>
-        <h3><a href="memlens/">MemLens<span aria-hidden="true">↗</span></a></h3>
-        <p>基于 LLM 的 C/C++ 内存安全审查工具：扫描代码 diff，定位 UAF、缓冲区溢出等缺陷，输出含 CWE 分级、证据链与修复建议的报告。</p>
-        <div class="work-links">
-          <a class="btn btn-ghost btn-sm" href="memlens/">产品介绍</a>
-          <a class="btn btn-ghost btn-sm" href="https://github.com/weixiao-czy/memlens" target="_blank" rel="noopener">GitHub</a>
+        <div class="work-body">
+          <p class="work-index"><span>01</span> FEATURED PROJECT</p>
+          <h3><a href="data_base_agent/">data_base_agent<span aria-hidden="true">↗</span></a></h3>
+          <p>面向交大同学的文献检索 Agent：通过对话澄清模糊的研究想法，生成结构化检索方案，并自动获取论文与引用信息。</p>
+          <div class="work-links">
+            <a class="btn btn-ghost btn-sm" href="data_base_agent/">产品介绍</a>
+            <a class="btn btn-ghost btn-sm" href="https://github.com/weixiao-czy/data_base_agent" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </div>
       </article>
     </div>
@@ -210,11 +293,11 @@
     <header class="section-head reveal">
       <p class="section-kicker"><span class="section-no">02</span> GET IN TOUCH<i aria-hidden="true"></i></p>
       <h2>让有趣的想法相遇</h2>
-      <p class="section-sub">欢迎交流编程、项目与任何有趣的想法。</p>
+      <p class="section-sub">欢迎交流编程、硬件与任何有趣的想法。</p>
     </header>
 
     <div class="contact-grid">
-      <div class="contact-card reveal">
+      <div class="contact-card contact-card-email reveal">
         <div class="contact-icon">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none"/><path d="m3 7 9 6 9-6" fill="none"/></svg>
         </div>
@@ -223,18 +306,6 @@
         <div class="contact-actions">
           <button class="btn btn-ghost btn-sm" type="button" data-copy="harry20080428@sjtu.edu.cn">复制</button>
           <a class="btn btn-ghost btn-sm" href="mailto:harry20080428@sjtu.edu.cn">发送邮件</a>
-        </div>
-      </div>
-
-      <div class="contact-card reveal">
-        <div class="contact-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.3-4-1L3 20l1.1-5.2A8.5 8.5 0 1 1 21 11.5Z" fill="none"/><path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01" stroke-width="2.2"/></svg>
-        </div>
-        <p class="contact-k">WECHAT · 微信</p>
-        <p class="contact-v" id="wechatText">weixiao20190228</p>
-        <p class="contact-note">添加请备注来意</p>
-        <div class="contact-actions">
-          <button class="btn btn-ghost btn-sm" type="button" data-copy="weixiao20190228">复制</button>
         </div>
       </div>
     </div>

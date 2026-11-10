@@ -200,7 +200,7 @@
   }
 
   /* Pointer feedback is scoped to the hero and schedules at most one frame per event burst. */
-  var shield = document.querySelector('.shield-svg');
+  var chip = document.querySelector('.chip-svg');
   var pointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   var pointerFrame = 0;
   var pointerX = 0, pointerY = 0;
@@ -214,7 +214,7 @@
       var rect = hero.getBoundingClientRect();
       var x = Math.max(-.5, Math.min(.5, (pointerX - rect.left) / rect.width - .5));
       var y = Math.max(-.5, Math.min(.5, (pointerY - rect.top) / rect.height - .5));
-      shield.style.transform = 'perspective(900px) rotateY(' + x * 11 + 'deg) rotateX(' + -y * 8 + 'deg)';
+      chip.style.transform = 'perspective(900px) rotateY(' + x * 11 + 'deg) rotateX(' + -y * 8 + 'deg)';
       planet.style.setProperty('--space-x', x * -18 + 'px');
       planet.style.setProperty('--space-y', y * -12 + 'px');
       starfield.style.transform = 'translate3d(' + x * 9 + 'px,' + y * 7 + 'px,0)';
@@ -223,7 +223,7 @@
   hero.addEventListener('pointerleave', function () {
     cancelAnimationFrame(pointerFrame);
     pointerFrame = 0;
-    shield.style.transform = '';
+    chip.style.transform = '';
     planet.style.removeProperty('--space-x');
     planet.style.removeProperty('--space-y');
     starfield.style.transform = '';
@@ -261,7 +261,7 @@
           window.getSelection().removeAllRanges();
           window.getSelection().addRange(range);
         }
-        toast.textContent = valueEl ? '复制失败，已选中内容，请手动复制' : '复制失败，请手动选择号码';
+        toast.textContent = valueEl ? '复制失败，已选中内容，请手动复制' : '复制失败，请手动选择内容';
       }
       toast.classList.add('is-show');
       clearTimeout(toastTimer);
