@@ -11,7 +11,7 @@
   var stars = document.createDocumentFragment();
   for (var starIndex = 0; starIndex < starCount; starIndex++) {
     var star = document.createElement('span');
-    star.className = 'star space-motion';
+    star.className = 'star';
     star.style.cssText = 'left:' + (starIndex * 61.803 % 100) + '%;top:' +
       (starIndex * 37.917 % 96) + '%;--star-size:' + (starIndex % 6 === 0 ? 3 : 2) +
       'px;--twinkle:' + (3.5 + starIndex % 6) + 's;animation-delay:-' + (starIndex % 9) + 's';
@@ -63,6 +63,39 @@
   motion.addEventListener('change', syncMotion);
   syncMotion();
 
+  /* A quiet typewriter line; the static sentence remains for reduced motion. */
+  var typingEl = document.getElementById('typingText');
+  if (typingEl && !motion.matches) {
+    var phrases = ['把想法，变成能运行的项目。', '在信号、电路、代码与 AI 之间探索。', '保持好奇，持续构建。', '用 AI 把想法更快变成现实。'];
+    var phraseIndex = 0, charIndex = 0, deleting = false;
+    var typeStep = function () {
+      if (document.hidden || !heroVisible) { setTimeout(typeStep, 800); return; }
+      var phrase = phrases[phraseIndex];
+      if (!deleting) {
+        charIndex++;
+        typingEl.textContent = phrase.slice(0, charIndex);
+        if (charIndex >= phrase.length) {
+          deleting = true;
+          setTimeout(typeStep, 2400);
+          return;
+        }
+        setTimeout(typeStep, 66 + Math.random() * 40);
+      } else {
+        charIndex--;
+        typingEl.textContent = phrase.slice(0, charIndex);
+        if (charIndex <= 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(typeStep, 420);
+          return;
+        }
+        setTimeout(typeStep, 28);
+      }
+    };
+    typingEl.textContent = '';
+    setTimeout(typeStep, 1400);
+  }
+
   /* The portrait is a 360° turntable: 8 angles per expression, blended by opacity. */
   var disc = document.getElementById('avatarDisc');
   if (disc) {
@@ -75,7 +108,7 @@
     var stageEl = disc.closest('.hero-stage');
     var directions = ['正面', '右前', '右侧', '右后', '背面', '左后', '左侧', '左前'];
     var step = 45, angle = 0, smileMix = 0, smileTarget = 0;
-    var dragging = false, dragX = 0, dragT = 0, velocity = 0, moved = 0, frameId = 0, lastFrame = 0;
+    var dragging = false, dragX = 0, dragY = 0, dragT = 0, velocity = 0, moved = 0, frameId = 0, lastFrame = 0;
     var settling = false, settleFrom = 0, settleTo = 0, settleStart = 0, settleDuration = 260;
 
     function wrapAngle(value) { return ((value % 360) + 360) % 360; }
@@ -154,7 +187,7 @@
     disc.addEventListener('pointerdown', function (event) {
       if (event.button !== undefined && event.button !== 0) return;
       dragging = true; moved = 0; velocity = 0; settling = false;
-      dragX = event.clientX; dragT = performance.now();
+      dragX = event.clientX; dragY = event.clientY; dragT = performance.now();
       disc.classList.add('is-dragging');
       if (disc.setPointerCapture) disc.setPointerCapture(event.pointerId);
       scheduleAvatar();
@@ -163,12 +196,13 @@
       if (!dragging) return;
       var now = performance.now();
       var dx = event.clientX - dragX;
+      var dy = event.clientY - dragY;
       var dt = Math.max(1, now - dragT);
-      moved += Math.abs(dx);
+      moved += Math.abs(dx) + Math.abs(dy);
       var sensitivity = 360 / (Math.max(120, disc.clientWidth) * 1.35);
       angle = wrapAngle(angle - dx * sensitivity);
       velocity = Math.max(-.5, Math.min(.5, -dx * sensitivity / dt));
-      dragX = event.clientX; dragT = now;
+      dragX = event.clientX; dragY = event.clientY; dragT = now;
       if (moved > 16 && stageEl) stageEl.classList.add('has-interacted');
       renderAvatar();
     });
@@ -316,16 +350,16 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     var c = size / 2, radius = size * .395;
     var atmosphere = ctx.createRadialGradient(c, c, radius * .97, c, c, radius * 1.17);
-    atmosphere.addColorStop(0, 'rgba(25,114,193,.02)');
-    atmosphere.addColorStop(.27, 'rgba(44,142,222,.17)');
-    atmosphere.addColorStop(.6, 'rgba(31,107,184,.055)');
-    atmosphere.addColorStop(1, 'rgba(15,58,104,0)');
+    atmosphere.addColorStop(0, 'rgba(59,158,255,.02)');
+    atmosphere.addColorStop(.27, 'rgba(59,158,255,.16)');
+    atmosphere.addColorStop(.6, 'rgba(30,100,200,.05)');
+    atmosphere.addColorStop(1, 'rgba(10,40,90,0)');
     ctx.fillStyle = atmosphere;
     ctx.fillRect(0, 0, size, size);
     var sphere = ctx.createRadialGradient(c + radius * .45, c - radius * .35, 0, c, c, radius);
-    sphere.addColorStop(0, '#123258');
-    sphere.addColorStop(.6, '#0b2241');
-    sphere.addColorStop(1, '#071527');
+    sphere.addColorStop(0, '#0e2038');
+    sphere.addColorStop(.6, '#081528');
+    sphere.addColorStop(1, '#040b16');
     ctx.fillStyle = sphere;
     ctx.beginPath(); ctx.arc(c, c, radius, 0, Math.PI * 2); ctx.fill();
 
@@ -340,7 +374,7 @@
       });
       ctx.stroke();
     }
-    ctx.strokeStyle = 'rgba(100,170,225,.12)'; ctx.lineWidth = .65;
+    ctx.strokeStyle = 'rgba(226,240,255,.07)'; ctx.lineWidth = .65;
     for (var lat = -60; lat <= 60; lat += 20) {
       var horizontal = [];
       for (var lon = -180; lon <= 180; lon += 3) horizontal.push([lon, lat]);
@@ -357,15 +391,15 @@
         if (!isLand(longitude, latitude)) continue;
         var p = project(longitude, latitude, c, radius);
         if (p.z <= .015) continue;
-        var alpha = .12 + p.z * .29;
-        ctx.fillStyle = 'rgba(112,195,239,' + alpha + ')';
+        var alpha = .14 + p.z * .4;
+        ctx.fillStyle = 'rgba(147,197,255,' + alpha + ')';
         ctx.beginPath(); ctx.arc(p.x, p.y, size * .00115, 0, Math.PI * 2); ctx.fill();
       }
     }
-    ctx.strokeStyle = 'rgba(96,187,242,.26)'; ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(59,158,255,.34)'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(c, c, radius, 0, Math.PI * 2); ctx.stroke();
     // A few great-circle routes, rather than hundreds of foreground particles.
-    ctx.strokeStyle = 'rgba(90,174,230,.18)'; ctx.lineWidth = .8;
+    ctx.strokeStyle = 'rgba(226,240,255,.1)'; ctx.lineWidth = .8;
     [[-10,50,125,35],[20,-30,115,40],[-20,0,140,55]].forEach(function (route) {
       var arc = [];
       for (var i = 0; i <= 60; i++) {

@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050b17">
-<title>陈郑砚 Harry · 个人作品集</title>
-<meta name="description" content="陈郑砚（Harry）的个人作品集 —— 上海交通大学 2026 级本科生，信息工程方向，关注通信、硬件与代码。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='28' y='28' width='44' height='44' rx='9' fill='none' stroke='%2338bdf8' stroke-width='6'/%3E%3Cpath d='M39 28V16M50 28V16M61 28V16M39 84V72M50 84V72M61 84V72M28 39H16M28 50H16M28 61H16M84 39H72M84 50H72M84 61H72' stroke='%2338bdf8' stroke-width='5'/%3E%3Crect x='44' y='44' width='12' height='12' rx='2' fill='%2338bdf8'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#050a14">
+<title>陈郑砚 Harry · Portfolio</title>
+<meta name="description" content="陈郑砚（Harry）的个人作品集 —— 上海交通大学 2026 级本科生，信息工程方向，关注信号、硬件、软件与 AI。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050a14'/%3E%3Crect x='28' y='28' width='44' height='44' rx='9' fill='none' stroke='%233b9eff' stroke-width='6'/%3E%3Cpath d='M39 28V16M50 28V16M61 28V16M39 84V72M50 84V72M61 84V72M28 39H16M28 50H16M28 61H16M84 39H72M84 50H72M84 61H72' stroke='%233b9eff' stroke-width='5'/%3E%3Crect x='44' y='44' width='12' height='12' rx='2' fill='%237dd3fc'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- 地球纹理只绘制一次，星光、轨道和视差由 CSS 驱动 -->
+<div class="grain" aria-hidden="true"></div>
 <div class="starfield" id="starfield" aria-hidden="true"></div>
-<div class="bg-glow" aria-hidden="true"></div>
-<div class="space-nebula space-motion" aria-hidden="true"></div>
+<div class="space-aurora" aria-hidden="true"></div>
 <div class="planet-system" id="planetSystem" aria-hidden="true">
   <canvas id="globe"></canvas>
   <div class="orbital-system">
@@ -23,51 +24,69 @@
     <div class="orbit-plane orbit-plane-c"><div class="orbit-runner space-motion"><i></i></div></div>
   </div>
 </div>
-<div class="shooting-star space-motion" aria-hidden="true"></div>
 <a class="skip-link" href="#home">跳到正文</a>
 
 <header class="site-header" id="siteHeader">
-<a class="brand" href="#home">
-  <svg viewBox="0 0 100 100" class="brand-chip" aria-hidden="true">
-    <rect x="30" y="30" width="40" height="40" rx="8"/>
-    <path d="M40 30V17M50 30V17M60 30V17M40 83V70M50 83V70M60 83V70M30 40H17M30 50H17M30 60H17M83 40H70M83 50H70M83 60H70"/>
-    <rect class="brand-core" x="45" y="45" width="10" height="10" rx="2"/>
-  </svg>
-  <span class="brand-text">Harry<span class="brand-dot">.</span>Chen</span>
-</a>
+  <a class="brand" href="#home" aria-label="HARRY.CHEN 首页">
+    <svg viewBox="0 0 100 100" class="brand-chip" aria-hidden="true">
+      <rect x="30" y="30" width="40" height="40" rx="8"/>
+      <path d="M40 30V17M50 30V17M60 30V17M40 83V70M50 83V70M60 83V70M30 40H17M30 50H17M30 60H17M83 40H70M83 50H70M83 60H70"/>
+      <rect class="brand-core" x="44" y="44" width="12" height="12" rx="2"/>
+    </svg>
+    <span class="brand-text">HARRY.CHEN<i class="brand-dot"></i></span>
+  </a>
 
-<nav class="side-nav" id="sideNav" aria-label="站点导航">
-  <a href="#home" class="nav-item is-active" data-target="home">
-    <span class="nav-label">首页</span><span class="nav-bar"></span>
-  </a>
-  <a href="#works" class="nav-item" data-target="works">
-    <span class="nav-label">作品</span><span class="nav-bar"></span>
-  </a>
-  <a href="#contact" class="nav-item" data-target="contact">
-    <span class="nav-label">联系</span><span class="nav-bar"></span>
-  </a>
-</nav>
+  <nav class="side-nav" id="sideNav" aria-label="站点导航">
+    <a href="#home" class="nav-item is-active" data-target="home" aria-label="首页">HOME</a>
+    <a href="#work" class="nav-item" data-target="work" aria-label="作品">WORK</a>
+    <a href="#focus" class="nav-item" data-target="focus" aria-label="方向">FOCUS</a>
+    <a href="#about" class="nav-item" data-target="about" aria-label="关于">ABOUT</a>
+    <a href="#contact" class="nav-item" data-target="contact" aria-label="联系">CONTACT</a>
+  </nav>
+
+  <div class="header-end">
+    <span class="nav-status"><i aria-hidden="true"></i>OPEN TO TALK</span>
+    <a class="nav-cta" href="#contact">SAY HELLO</a>
+  </div>
 </header>
 
 <main>
-  <!-- ============ 首页 ============ -->
+  <!-- ============ 首屏 ============ -->
   <section class="section hero" id="home">
-    <div class="hero-frame" aria-hidden="true"><i></i><i></i></div>
-    <span class="hero-watermark" aria-hidden="true">Harry</span>
+    <span class="hero-word" aria-hidden="true">PORTFOLIO</span>
+    <span class="hero-coord" aria-hidden="true">31.23°N / 121.47°E — SHANGHAI</span>
+    <span class="hero-side" aria-hidden="true">FOLIO — VOL.01 / 2026</span>
+    <span class="hero-cross hero-cross-a" aria-hidden="true"></span>
+    <span class="hero-cross hero-cross-b" aria-hidden="true"></span>
+    <span class="hero-cross hero-cross-c" aria-hidden="true"></span>
 
     <div class="hero-inner">
       <div class="hero-copy">
-        <h1 class="hero-title">
-          <span class="line"><span class="line-inner">陈郑砚</span></span>
-          <span class="line"><span class="line-inner name-en">Harry</span></span>
-        </h1>
-        <p class="typing-line hero-in">
+        <p class="eyebrow"><span>00</span> PERSONAL PORTFOLIO — 2026</p>
+        <p class="hero-hello">你好，我是</p>
+        <h1 class="hero-title">HARRY<span class="hero-dot">.</span></h1>
+        <p class="hero-name">陈郑砚 <i>·</i> Harry Chen <span>信息工程 @ SJTU</span></p>
+        <p class="typing-line">
           <span class="typing-caret" aria-hidden="true"></span>
           <span id="typingText">把想法，变成能运行的项目。</span>
         </p>
-        <p class="hero-desc hero-in">
-          上海交通大学 2026 级本科生，<br class="desktop-break">信息工程方向：在信号、电路与代码中探索。
-        </p>
+        <p class="hero-desc">上海交通大学 2026 级本科生，信息工程方向。在信号、电路、代码与 AI 之间，寻找想法落地的形状。</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#work">探索作品 <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-line" href="#contact">聊聊想法</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/weixiao-czy" target="_blank" rel="noopener" aria-label="GitHub（新窗口打开）">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.35.78 1.05.78 2.12v3.14c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            <span>GITHUB</span>
+            <i aria-hidden="true">↗</i>
+          </a>
+          <a href="https://xhslink.cn/o/9YxzJMVlwX7" target="_blank" rel="noopener" aria-label="小红书（新窗口打开）">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.5"/><path d="M8 9h8M8 12.5h8M8 16h5"/></svg>
+            <span>小红书</span>
+            <i aria-hidden="true">↗</i>
+          </a>
+        </div>
       </div>
 
       <!-- 居中：虚拟形象作为芯片核心 -->
@@ -106,11 +125,11 @@
             <defs>
               <linearGradient id="chipStroke" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#7dd3fc"/>
-                <stop offset="50%" stop-color="#38bdf8"/>
+                <stop offset="55%" stop-color="#38bdf8"/>
                 <stop offset="100%" stop-color="#2563eb"/>
               </linearGradient>
               <pattern id="chipGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M10 0H0V10" fill="none" stroke="rgba(139,196,239,.075)" stroke-width=".5"/>
+                <path d="M10 0H0V10" fill="none" stroke="rgba(226,240,255,.07)" stroke-width=".5"/>
               </pattern>
             </defs>
 
@@ -202,7 +221,7 @@
             <text class="chip-mark" x="120" y="47" text-anchor="middle">HJ·CORE</text>
             <text class="chip-mark" x="192" y="47" text-anchor="end">SJTU·2026</text>
             <text class="chip-mark" x="48" y="199">IE-01</text>
-            <text class="chip-mark" x="192" y="199" text-anchor="end">REV.A</text>
+            <text class="chip-mark" x="192" y="199" text-anchor="end">REV.B</text>
           </svg>
           <span class="chip-deco chip-deco-rf" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 20v-8"/><circle cx="12" cy="20" r="1.3"/><path d="M8.6 8.6a5 5 0 0 1 6.8 0"/><path d="M5.6 5.6a9 9 0 0 1 12.8 0"/></svg>
@@ -214,7 +233,6 @@
             <span>信息工程 · 2026</span>
           </div>
         </div>
-        <p class="chip-caption">Signal · Silicon · Software.</p>
         <div class="avatar-controls">
           <span class="avatar-angle" aria-hidden="true"><span id="avatarAngle">000</span><i>°</i></span>
           <span class="avatar-hint" id="avatarHint">拖拽旋转</span>
@@ -223,89 +241,217 @@
             <span>微笑</span>
           </button>
         </div>
-        <div class="social-row hero-in">
-          <a class="social-btn" href="https://github.com/weixiao-czy" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-            GitHub
-          </a>
-          <a class="social-btn social-btn-xhs" href="https://xhslink.cn/o/9YxzJMVlwX7" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10.2 4.9 7.7 4 5 4c-.9 0-1.8.1-2.6.3.1 6.4 1.6 11.6 4.2 15.4 1.9-.5 3.8-1.5 5.4-3 1.6 1.5 3.5 2.5 5.4 3 2.6-3.8 4.1-9 4.2-15.4C20.8 4.1 19.9 4 19 4c-2.7 0-5.2.9-7 2.5Z" fill="none" stroke-width="1.7"/><path d="M12 6.5v10.2" fill="none" stroke-width="1.7"/></svg>
-            小红书
-          </a>
-        </div>
-        <figure class="hero-polaroid">
-          <img src="assets/avatar.jpg" alt="陈郑砚本人照片" width="435" height="435" decoding="async">
-          <figcaption>Harry · 2026</figcaption>
-        </figure>
+        <p class="chip-caption">SIGNAL · SILICON · SOFTWARE · AI</p>
       </div>
 
-      <div class="hero-meta">
-        <ul class="focus-index hero-in" aria-label="技术方向">
-          <li><span class="focus-no">01</span><span class="focus-name">通信</span><span class="focus-en">Signal</span></li>
-          <li><span class="focus-no">02</span><span class="focus-name">硬件</span><span class="focus-en">Hardware</span></li>
-          <li><span class="focus-no">03</span><span class="focus-name">代码</span><span class="focus-en">Code</span></li>
+      <aside class="hero-meta">
+        <p class="meta-label">FOCUS / 技术方向</p>
+        <ul class="focus-index">
+          <li><span class="focus-no">01</span><span class="focus-name">通信 <em>Signal</em></span><span class="focus-en">RF / SIGNAL</span></li>
+          <li><span class="focus-no">02</span><span class="focus-name">硬件 <em>Hardware</em></span><span class="focus-en">CHIP / EMBEDDED</span></li>
+          <li><span class="focus-no">03</span><span class="focus-name">代码 <em>Code</em></span><span class="focus-en">SOFTWARE / WEB</span></li>
+          <li><span class="focus-no">04</span><span class="focus-name">AI <em>Applied AI</em></span><span class="focus-en">LLM / AGENT</span></li>
         </ul>
-        <div class="hero-actions hero-in">
-          <a class="btn btn-primary" href="#works">探索我的作品 <span aria-hidden="true">↗</span></a>
-          <a class="btn btn-ghost" href="#contact">联系我</a>
+        <div class="stats">
+          <div class="stat"><span class="stats-v">SJTU</span><span class="stats-k">上海交通大学</span></div>
+          <div class="stat"><span class="stats-v stats-accent">2026</span><span class="stats-k">信息工程 · 本科</span></div>
         </div>
-        <ul class="stats hero-in">
-          <li><span class="stats-v">SJTU</span><span class="stats-k">上海交通大学</span></li>
-          <li><span class="stats-v">2026</span><span class="stats-k">新的旅程，正在开始</span></li>
-        </ul>
+        <a class="meta-mail" href="mailto:harry20080428@sjtu.edu.cn">harry20080428@sjtu.edu.cn</a>
+      </aside>
+    </div>
+
+    <div class="hero-foot">
+      <a class="scroll-hint" href="#work"><i class="scroll-dot" aria-hidden="true"></i>SCROLL TO EXPLORE</a>
+      <p class="hero-foot-note">DESIGNED WITH CURIOSITY <span aria-hidden="true">—</span> BUILT WITH AI</p>
+    </div>
+  </section>
+
+  <!-- 滚动标语 -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-group">
+        <span>SIGNAL</span><i>✳</i><span>SILICON</span><i>✳</i><span>SOFTWARE</span><i>✳</i><span>APPLIED AI</span><i>✳</i><span>SHANGHAI · CN</span><i>✳</i><span>SJTU '26</span><i>✳</i><span>KEEP BUILDING</span><i>✳</i>
+      </div>
+      <div class="ticker-group">
+        <span>SIGNAL</span><i>✳</i><span>SILICON</span><i>✳</i><span>SOFTWARE</span><i>✳</i><span>APPLIED AI</span><i>✳</i><span>SHANGHAI · CN</span><i>✳</i><span>SJTU '26</span><i>✳</i><span>KEEP BUILDING</span><i>✳</i>
       </div>
     </div>
-    <a class="scroll-hint" href="#works" aria-label="向下滚动">
-      <span></span>
-    </a>
-  </section>
+  </div>
 
   <!-- ============ 作品 ============ -->
-  <section class="section" id="works">
-    <header class="section-head reveal">
-      <p class="section-kicker"><span class="section-no">01</span> SELECTED WORK<i aria-hidden="true"></i></p>
-      <h2>从想法到作品</h2>
-      <p class="section-sub">在真实问题里寻找灵感，用代码给出自己的答案。</p>
-    </header>
-
-    <div class="works-grid">
-      <!-- 新增作品时：复制下面这张卡片，替换图片、链接、标题与介绍即可 -->
-      <article class="work-card work-card-feature reveal">
-        <a class="work-thumb-img" href="data_base_agent/" aria-label="data_base_agent 产品介绍">
-          <img src="assets/promo-dba.jpg" alt="data_base_agent 宣传图" width="1200" height="675" loading="lazy" decoding="async">
-          <span class="work-tag">文献检索 Agent</span>
-        </a>
-        <div class="work-body">
-          <p class="work-index"><span>01</span> FEATURED PROJECT</p>
-          <h3><a href="data_base_agent/">data_base_agent<span aria-hidden="true">↗</span></a></h3>
-          <p>面向交大同学的文献检索 Agent：通过对话澄清模糊的研究想法，生成结构化检索方案，并自动获取论文与引用信息。</p>
-          <div class="work-links">
-            <a class="btn btn-ghost btn-sm" href="data_base_agent/">产品介绍</a>
-            <a class="btn btn-ghost btn-sm" href="https://github.com/weixiao-czy/data_base_agent" target="_blank" rel="noopener">GitHub</a>
-          </div>
+  <section class="section works" id="work">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span>01</span> SELECTED WORK / 作品</p>
+        <div class="head-row">
+          <h2 class="display">WORK THAT <span class="accent">SPEAKS.</span></h2>
+          <a class="head-link" href="https://github.com/weixiao-czy" target="_blank" rel="noopener">MORE ON GITHUB <span aria-hidden="true">↗</span></a>
         </div>
-      </article>
+        <p class="section-sub">从真实问题出发，用代码给出自己的答案。目前收录一个在研的 AI 产品，之后会持续加入新的作品。</p>
+      </header>
+
+      <div class="work-grid">
+        <article class="work-feature reveal">
+          <a class="work-media" href="data_base_agent/" aria-label="data_base_agent 产品介绍">
+            <img src="assets/promo-dba.jpg" alt="data_base_agent 宣传图" width="1200" height="675" loading="lazy" decoding="async">
+            <span class="tag tag-left">01 / AI AGENT</span>
+            <span class="tag tag-right">2026</span>
+            <span class="work-open" aria-hidden="true">VIEW PROJECT ↗</span>
+          </a>
+          <div class="work-body">
+            <div class="work-intro">
+              <h3><a href="data_base_agent/">data_base_agent</a></h3>
+              <p>面向交大同学的文献检索 Agent：通过对话澄清模糊的研究想法，生成结构化检索方案，并自动获取论文与引用信息。</p>
+              <div class="work-links">
+                <a class="btn btn-line btn-sm" href="data_base_agent/">产品介绍 <span aria-hidden="true">↗</span></a>
+                <a class="btn btn-line btn-sm" href="https://github.com/weixiao-czy/data_base_agent" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+            <dl class="work-meta">
+              <div><dt>ROLE</dt><dd>设计 · 开发</dd></div>
+              <div><dt>STACK</dt><dd>Python · LLM · Web</dd></div>
+              <div><dt>STATUS</dt><dd><i class="status-dot" aria-hidden="true"></i>进行中</dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- ============ 联系方式 ============ -->
-  <section class="section" id="contact">
-    <header class="section-head reveal">
-      <p class="section-kicker"><span class="section-no">02</span> GET IN TOUCH<i aria-hidden="true"></i></p>
-      <h2>让有趣的想法相遇</h2>
-      <p class="section-sub">欢迎交流编程、硬件与任何有趣的想法。</p>
-    </header>
-
-    <div class="contact-grid">
-      <div class="contact-card contact-card-email reveal">
-        <div class="contact-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none"/><path d="m3 7 9 6 9-6" fill="none"/></svg>
+  <!-- ============ 技术方向 ============ -->
+  <section class="section focus" id="focus">
+    <div class="wrap">
+      <div class="focus-grid">
+        <div class="focus-left">
+          <p class="eyebrow reveal"><span>02</span> CAPABILITY INDEX / 方向</p>
+          <h2 class="display reveal">SIGNAL.<br>SILICON.<br>SOFTWARE.<br><span class="accent">AI &amp; LLM.</span></h2>
+          <div class="focus-mark reveal" aria-hidden="true">
+            <span class="focus-num">04</span>
+            <span class="focus-note">CORE DISCIPLINES</span>
+          </div>
+          <p class="focus-sub reveal">从信号到智能，同一个问题——想法如何变成现实。</p>
         </div>
-        <p class="contact-k">EMAIL · 邮箱</p>
-        <p class="contact-v" id="emailText">harry20080428@sjtu.edu.cn</p>
-        <div class="contact-actions">
-          <button class="btn btn-ghost btn-sm" type="button" data-copy="harry20080428@sjtu.edu.cn">复制</button>
-          <a class="btn btn-ghost btn-sm" href="mailto:harry20080428@sjtu.edu.cn">发送邮件</a>
+
+        <ol class="focus-list">
+          <li class="reveal">
+            <span class="row-no">01</span>
+            <div class="row-body">
+              <h3>通信与信号 <em>Signal &amp; Communication</em></h3>
+              <p>在波形、协议与信息论里，理解信息如何准确地抵达。</p>
+            </div>
+            <span class="row-word">通信</span>
+          </li>
+          <li class="reveal">
+            <span class="row-no">02</span>
+            <div class="row-body">
+              <h3>硬件与嵌入式 <em>Hardware &amp; Embedded</em></h3>
+              <p>从电路到芯片，再到固件，让代码真正触碰物理世界。</p>
+            </div>
+            <span class="row-word">硬件</span>
+          </li>
+          <li class="reveal">
+            <span class="row-no">03</span>
+            <div class="row-body">
+              <h3>代码与产品 <em>Software &amp; Product</em></h3>
+              <p>用 Python、C++ 与 Web，把想法做成能运行、能被使用的产品。</p>
+            </div>
+            <span class="row-word">代码</span>
+          </li>
+          <li class="reveal">
+            <span class="row-no">04</span>
+            <div class="row-body">
+              <h3>AI 与应用 <em>Applied AI &amp; LLM</em></h3>
+              <p>把大模型接进真实工具：检索、对话、自动化。正在用 AI 重做文献检索的流程。</p>
+            </div>
+            <span class="row-word">智能</span>
+          </li>
+          <li class="reveal">
+            <span class="row-no">05</span>
+            <div class="row-body">
+              <h3>交互与视觉 <em>Interaction &amp; Visual</em></h3>
+              <p>探索动效与 3D 交互，让页面也能讲故事——这张地球与 360° 形象，都是本页的实验。</p>
+            </div>
+            <span class="row-word">实验</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 关于 ============ -->
+  <section class="section about" id="about">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span>03</span> ABOUT / 关于</p>
+      <div class="about-grid">
+        <div class="about-copy">
+          <h2 class="display reveal">MORE THAN CODE.<br>IT'S HOW <span class="serif accent">ideas</span><br>CONNECT.</h2>
+          <p class="section-sub reveal">上海交通大学 2026 级本科生，信息工程方向。喜欢把散落的想法连成能运行的系统——从一段信号，到一块芯片，再到一个网页和大模型。</p>
+          <p class="section-sub reveal">我正在持续学习 AI 的各种可能：从大模型、Agent 到检索与自动化。平时会拆解和研究各种开源项目，再把自己的想法做成原型。AI 对我既是工具也是课题，data_base_agent 就是一次真实的尝试。</p>
+          <a class="head-link reveal" href="#contact">OPEN A CONVERSATION <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="about-media">
+          <div class="about-panel reveal">
+            <span class="panel-label">FROM SIGNALS TO INTELLIGENCE</span>
+            <p class="about-script">Stay curious.</p>
+            <p class="about-cn">保持好奇，持续构建。<br>把每一次尝试，都做成作品。</p>
+            <span class="about-sign" aria-hidden="true">Harry</span>
+          </div>
+          <figure class="about-polaroid reveal">
+            <img src="assets/avatar.jpg" alt="陈郑砚本人照片" width="435" height="435" loading="lazy" decoding="async">
+            <figcaption>Harry · 2026</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 大字跑马灯 -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span class="mq-solid">KEEP BUILDING</span><i>✦</i><span class="mq-cn">保持好奇</span><i>✦</i><span class="mq-solid">SIGNAL — SILICON — SOFTWARE — AI</span><i>✦</i>
+      </div>
+      <div class="marquee-group">
+        <span class="mq-solid">KEEP BUILDING</span><i>✦</i><span class="mq-cn">保持好奇</span><i>✦</i><span class="mq-solid">SIGNAL — SILICON — SOFTWARE — AI</span><i>✦</i>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 联系 ============ -->
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span>04</span> CONTACT / 联系</p>
+      <h2 class="display reveal">LET'S <span class="accent">TALK.</span></h2>
+      <p class="section-sub reveal">欢迎交流编程、硬件、AI，或者任何有趣的想法。看到消息，我会尽快回复。</p>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <p class="contact-k">EMAIL / 邮箱</p>
+          <p class="contact-v" id="emailText">harry20080428@sjtu.edu.cn</p>
+          <div class="contact-actions">
+            <button class="btn btn-solid btn-sm" type="button" data-copy="harry20080428@sjtu.edu.cn">复制邮箱</button>
+            <a class="btn btn-line btn-sm" href="mailto:harry20080428@sjtu.edu.cn">发送邮件 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="contact-side reveal">
+          <p class="contact-k">ELSEWHERE / 其他</p>
+          <a class="contact-link" href="https://github.com/weixiao-czy" target="_blank" rel="noopener">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.35.78 1.05.78 2.12v3.14c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            </span>
+            <span class="contact-label">GitHub<em>OPEN SOURCE / 开源与代码</em></span>
+            <span class="contact-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="contact-link" href="https://xhslink.cn/o/9YxzJMVlwX7" target="_blank" rel="noopener">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4.5"/><path d="M8 9h8M8 12.5h8M8 16h5"/></svg>
+            </span>
+            <span class="contact-label">小红书<em>NOTES &amp; LIFE / 日常与灵感</em></span>
+            <span class="contact-arrow" aria-hidden="true">↗</span>
+          </a>
+          <p class="contact-meta">SHANGHAI · CN<br>UTC+8 · 31.23°N</p>
         </div>
       </div>
     </div>
@@ -314,7 +460,8 @@
 
 <footer class="footer">
   <p>© 2026 陈郑砚 Harry · Shanghai Jiao Tong University</p>
-  <a href="#home" class="footer-top">回到顶部 ↑</a>
+  <p class="footer-note">DESIGNED &amp; BUILT WITH CURIOSITY</p>
+  <a href="#home" class="footer-top">BACK TO TOP ↑</a>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
